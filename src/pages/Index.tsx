@@ -481,7 +481,7 @@ export default function Index() {
                 {[
                   { icon: 'MapPin', text: 'Москва, ул. Садовая-Триумфальная, 16' },
                   { icon: 'Mail', text: 'info@stroydom.ru' },
-                  { icon: 'Clock', text: 'Пн–Пт: 9:00–20:00 | Сб–Вс: 10:00–18:00' },
+                  { icon: 'Clock', text: 'Работаем круглосуточно, 7 дней в неделю' },
                 ].map((c) => (
                   <div key={c.text} className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
