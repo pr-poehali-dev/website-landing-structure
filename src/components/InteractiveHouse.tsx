@@ -89,137 +89,128 @@ const YARD_SERVICES: (ServiceItem & { btnX: number; btnY: number })[] = [
     photo: IMG.landscape,btnX: 28, btnY: 88 },
 ];
 
-// ─── SVG дома (единый, 400×520) ───────────────────────────────────────────────
+// ─── SVG дома (единый, 400×520) ─────────────────────────────────────────────
+// Блок 1 — крыша:         y 0   .. 160
+// Блок 2 — стены/отделка: y 160 .. 370
+// Блок 3 — фундамент+газон:y 370 .. 520
 function HouseSVGFull() {
   return (
     <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg"
       style={{ display: 'block', width: '100%', height: '100%' }}>
       <defs>
         <linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#C8DFF0"/><stop offset="100%" stopColor="#EDE9E0"/>
-        </linearGradient>
-        <linearGradient id="hGrass" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#7DB55A"/><stop offset="100%" stopColor="#5E9A3C"/>
-        </linearGradient>
-        <linearGradient id="hWall" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#F2EDE2"/><stop offset="100%" stopColor="#E0D8C8"/>
+          <stop offset="0%" stopColor="#D6E8F4"/><stop offset="100%" stopColor="#EEF4F8"/>
         </linearGradient>
         <linearGradient id="hRoof" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#C84038"/><stop offset="100%" stopColor="#8C2820"/>
+          <stop offset="0%" stopColor="#C0392B"/><stop offset="100%" stopColor="#8C2018"/>
+        </linearGradient>
+        <linearGradient id="hWall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#F5EFE4"/><stop offset="100%" stopColor="#E8DFCF"/>
         </linearGradient>
         <linearGradient id="hFound" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#B8A888"/><stop offset="100%" stopColor="#9A8A6A"/>
+          <stop offset="0%" stopColor="#B0A080"/><stop offset="100%" stopColor="#8A7A5E"/>
         </linearGradient>
-        <filter id="hSh"><feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#00000022"/></filter>
+        <linearGradient id="hGrass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#74B84A"/><stop offset="100%" stopColor="#58962E"/>
+        </linearGradient>
       </defs>
-      <rect width="400" height="520" fill="url(#hSky)"/>
-      {/* Clouds */}
-      <ellipse cx="60" cy="40" rx="38" ry="16" fill="white" opacity="0.7"/>
-      <ellipse cx="90" cy="30" rx="28" ry="14" fill="white" opacity="0.7"/>
-      <ellipse cx="320" cy="50" rx="32" ry="14" fill="white" opacity="0.6"/>
-      <ellipse cx="348" cy="38" rx="24" ry="12" fill="white" opacity="0.6"/>
-      {/* Chimneys */}
-      <rect x="108" y="52" width="22" height="62" fill="#C4AE8A" rx="2"/>
-      <rect x="104" y="48" width="30" height="10" fill="#A89070" rx="2"/>
-      <ellipse cx="119" cy="36" rx="7" ry="10" fill="#D8D4CC" opacity="0.45"/>
-      <ellipse cx="115" cy="22" rx="9" ry="12" fill="#D8D4CC" opacity="0.28"/>
-      <rect x="272" y="60" width="20" height="54" fill="#C4AE8A" rx="2"/>
-      <rect x="268" y="56" width="28" height="10" fill="#A89070" rx="2"/>
-      {/* Roof */}
-      <polygon points="30,170 200,42 370,170" fill="url(#hRoof)" filter="url(#hSh)"/>
-      <line x1="200" y1="42" x2="200" y2="170" stroke="#70201A" strokeWidth="1.5" opacity="0.3"/>
-      {[85,100,115,130,145,160].map((y, i) => {
-        const w = (y - 42) * 1.85;
+
+      {/* ══ БЛОК 1: КРЫША (y 0–160) ══ */}
+      {/* Небо */}
+      <rect x="0" y="0" width="400" height="160" fill="url(#hSky)"/>
+      {/* Труба */}
+      <rect x="268" y="60" width="20" height="60" fill="#C8B890" rx="2"/>
+      <rect x="264" y="56" width="28" height="8" fill="#B0A070" rx="2"/>
+      {/* Дымок */}
+      <ellipse cx="278" cy="46" rx="6" ry="9" fill="#D8D4CC" opacity="0.5"/>
+      <ellipse cx="274" cy="32" rx="8" ry="11" fill="#D8D4CC" opacity="0.3"/>
+      {/* Крыша — двускатная, простая */}
+      <polygon points="40,160 200,36 360,160" fill="url(#hRoof)"/>
+      {/* Черепичные линии */}
+      {[70,88,106,124,142,158].map((y, i) => {
+        const w = (y - 36) * 1.68;
         return <line key={i} x1={200 - w/2} y1={y} x2={200 + w/2} y2={y}
-          stroke="#8A2820" strokeWidth="1" opacity="0.2"/>;
+          stroke="#7A1C14" strokeWidth="1.5" opacity="0.22"/>;
       })}
-      <line x1="26" y1="170" x2="374" y2="170" stroke="#7A2218" strokeWidth="2.5" opacity="0.45"/>
-      {/* Dormer */}
-      <polygon points="176,95 200,72 224,95" fill="#B03828"/>
-      <rect x="180" y="95" width="40" height="30" fill="#C8E0F0" stroke="#9A2818" strokeWidth="1.5"/>
-      <line x1="200" y1="95" x2="200" y2="125" stroke="#9A2818" strokeWidth="1"/>
-      <line x1="180" y1="110" x2="220" y2="110" stroke="#9A2818" strokeWidth="1"/>
-      {/* Walls */}
-      <rect x="30" y="170" width="340" height="210" fill="url(#hWall)"/>
-      {[0,1,2,3,4,5,6,7,8].map(row =>
-        [0,1,2,3,4,5,6].map(col => (
-          <rect key={`b${row}-${col}`}
-            x={30 + col*50 + (row%2)*25} y={172 + row*26}
-            width="44" height="20" rx="2"
-            fill="none" stroke="#D0C8B4" strokeWidth="0.8" opacity="0.5"/>
-        ))
-      )}
-      {/* Window 1st floor left */}
-      <rect x="52" y="195" width="72" height="60" fill="#B8D8F0" stroke="#9A8A6A" strokeWidth="2" rx="3"/>
-      <line x1="88" y1="195" x2="88" y2="255" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <line x1="52" y1="225" x2="124" y2="225" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <rect x="52" y="195" width="72" height="8" fill="#C8B890" rx="2"/>
-      <rect x="48" y="253" width="80" height="6" fill="#C8B890" rx="2"/>
-      {/* Window 1st floor right */}
-      <rect x="276" y="195" width="72" height="60" fill="#B8D8F0" stroke="#9A8A6A" strokeWidth="2" rx="3"/>
-      <line x1="312" y1="195" x2="312" y2="255" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <line x1="276" y1="225" x2="348" y2="225" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <rect x="276" y="195" width="72" height="8" fill="#C8B890" rx="2"/>
-      <rect x="272" y="253" width="80" height="6" fill="#C8B890" rx="2"/>
-      {/* Arch + Door */}
-      <path d="M155,290 Q200,252 245,290" fill="#E8E0D0" stroke="#C8B890" strokeWidth="2"/>
-      <rect x="158" y="290" width="84" height="90" fill="#7A5E3A" rx="4"/>
-      <rect x="162" y="294" width="36" height="82" fill="#6A5030" rx="2"/>
-      <rect x="202" y="294" width="36" height="82" fill="#6A5030" rx="2"/>
-      <circle cx="196" cy="340" r="5" fill="#C8A84A"/>
-      <circle cx="204" cy="340" r="5" fill="#C8A84A"/>
-      <rect x="154" y="288" width="92" height="4" fill="#C8B890" rx="2"/>
-      {/* 2nd floor windows */}
-      <rect x="60" y="290" width="68" height="55" fill="#B8D8F0" stroke="#9A8A6A" strokeWidth="2" rx="3"/>
-      <line x1="94" y1="290" x2="94" y2="345" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <line x1="60" y1="318" x2="128" y2="318" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <rect x="60" y="290" width="68" height="7" fill="#C8B890" rx="2"/>
-      <rect x="56" y="343" width="76" height="5" fill="#C8B890" rx="2"/>
-      <rect x="272" y="290" width="68" height="55" fill="#B8D8F0" stroke="#9A8A6A" strokeWidth="2" rx="3"/>
-      <line x1="306" y1="290" x2="306" y2="345" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <line x1="272" y1="318" x2="340" y2="318" stroke="#9A8A6A" strokeWidth="1.5"/>
-      <rect x="272" y="290" width="68" height="7" fill="#C8B890" rx="2"/>
-      <rect x="268" y="343" width="76" height="5" fill="#C8B890" rx="2"/>
-      {/* Floor divider */}
-      <rect x="30" y="272" width="340" height="5" fill="#D0C4A8" rx="1"/>
-      {/* Terrace right */}
-      <rect x="370" y="310" width="30" height="70" fill="#E4DDD0" stroke="#C8B890" strokeWidth="1.5"/>
-      <rect x="370" y="308" width="30" height="8" fill="#C8B890" rx="1"/>
-      {/* Foundation */}
-      <rect x="26" y="378" width="348" height="42" fill="url(#hFound)"/>
-      {[0,1,2,3,4,5,6,7].map(i => (
-        <rect key={i} x={28 + i*45} y="382" width="38" height="16" rx="2"
-          fill="none" stroke="#8A7858" strokeWidth="1" opacity="0.4"/>
+      {/* Конёк */}
+      <line x1="200" y1="36" x2="200" y2="160" stroke="#7A1C14" strokeWidth="1.5" opacity="0.18"/>
+      {/* Карниз */}
+      <rect x="34" y="156" width="332" height="8" fill="#8A2418" rx="0"/>
+
+      {/* ══ БЛОК 2: СТЕНЫ И ОТДЕЛКА (y 160–370) ══ */}
+      {/* Стена — бежевый */}
+      <rect x="40" y="160" width="320" height="210" fill="url(#hWall)"/>
+      {/* Горизонтальная линия этажей */}
+      <line x1="40" y1="262" x2="360" y2="262" stroke="#D0C8B8" strokeWidth="1.5" opacity="0.6"/>
+      {/* Окна 1-го этажа */}
+      {/* Левое */}
+      <rect x="60" y="276" width="76" height="72" fill="white" stroke="#C8C0AA" strokeWidth="2" rx="4"/>
+      <line x1="98" y1="276" x2="98" y2="348" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <line x1="60" y1="312" x2="136" y2="312" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <rect x="60" y="276" width="76" height="8" fill="#E0D8C0" rx="2"/>
+      <rect x="56" y="346" width="84" height="5" fill="#D8D0B8" rx="2"/>
+      {/* Правое */}
+      <rect x="264" y="276" width="76" height="72" fill="white" stroke="#C8C0AA" strokeWidth="2" rx="4"/>
+      <line x1="302" y1="276" x2="302" y2="348" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <line x1="264" y1="312" x2="340" y2="312" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <rect x="264" y="276" width="76" height="8" fill="#E0D8C0" rx="2"/>
+      <rect x="260" y="346" width="84" height="5" fill="#D8D0B8" rx="2"/>
+      {/* Дверь по центру */}
+      <rect x="162" y="272" width="76" height="98" fill="#7A5E38" rx="4" stroke="#6A5030" strokeWidth="1.5"/>
+      <rect x="165" y="275" width="32" height="92" fill="#6A5030" rx="2"/>
+      <rect x="201" y="275" width="32" height="92" fill="#6A5030" rx="2"/>
+      <circle cx="196" cy="324" r="5" fill="#D4A83A"/>
+      <circle cx="204" cy="324" r="5" fill="#D4A83A"/>
+      {/* Арка над дверью */}
+      <path d="M158,276 Q200,244 242,276" fill="#EDE5D0" stroke="#D0C8B0" strokeWidth="2"/>
+      {/* Окна 2-го этажа */}
+      {/* Левое */}
+      <rect x="60" y="178" width="76" height="66" fill="white" stroke="#C8C0AA" strokeWidth="2" rx="4"/>
+      <line x1="98" y1="178" x2="98" y2="244" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <line x1="60" y1="211" x2="136" y2="211" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <rect x="60" y="178" width="76" height="8" fill="#E0D8C0" rx="2"/>
+      <rect x="56" y="242" width="84" height="5" fill="#D8D0B8" rx="2"/>
+      {/* Правое */}
+      <rect x="264" y="178" width="76" height="66" fill="white" stroke="#C8C0AA" strokeWidth="2" rx="4"/>
+      <line x1="302" y1="178" x2="302" y2="244" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <line x1="264" y1="211" x2="340" y2="211" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <rect x="264" y="178" width="76" height="8" fill="#E0D8C0" rx="2"/>
+      <rect x="260" y="242" width="84" height="5" fill="#D8D0B8" rx="2"/>
+      {/* Центральное верхнее (над дверью) */}
+      <rect x="170" y="186" width="60" height="52" fill="white" stroke="#C8C0AA" strokeWidth="2" rx="4"/>
+      <line x1="200" y1="186" x2="200" y2="238" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <line x1="170" y1="212" x2="230" y2="212" stroke="#C8C0AA" strokeWidth="1.5"/>
+      <rect x="170" y="186" width="60" height="7" fill="#E0D8C0" rx="2"/>
+
+      {/* ══ БЛОК 3: ФУНДАМЕНТ + ГАЗОН (y 370–520) ══ */}
+      {/* Фундамент */}
+      <rect x="40" y="368" width="320" height="36" fill="url(#hFound)"/>
+      {/* Швы фундамента */}
+      {[0,1,2,3,4,5,6].map(i => (
+        <rect key={i} x={42 + i*47} y="372" width="40" height="14" rx="2"
+          fill="none" stroke="#7A6A50" strokeWidth="1" opacity="0.4"/>
       ))}
-      {/* Porch steps */}
-      <rect x="148" y="378" width="104" height="12" fill="#C0AE88" rx="2"/>
-      <rect x="140" y="390" width="120" height="10" fill="#B8A480" rx="2"/>
-      <rect x="132" y="400" width="136" height="8" fill="#B09870" rx="2"/>
-      {/* Grass */}
-      <rect x="0" y="420" width="400" height="100" fill="url(#hGrass)"/>
-      {/* Path */}
-      <path d="M160,420 L156,520 L244,520 L240,420Z" fill="#D0C4A0" opacity="0.75"/>
-      {[430,445,460,475,490,505].map((y,i)=>(
-        <line key={i} x1={161+(y-420)*0.02} y1={y} x2={239-(y-420)*0.02} y2={y}
-          stroke="#B8AE88" strokeWidth="1.2" opacity="0.55"/>
+      {/* Ступени крыльца */}
+      <rect x="152" y="368" width="96" height="10" fill="#C4B080" rx="2"/>
+      <rect x="144" y="378" width="112" height="9" fill="#B8A070" rx="2"/>
+      <rect x="136" y="387" width="128" height="8" fill="#AC9460" rx="2"/>
+      {/* Газон */}
+      <rect x="0" y="403" width="400" height="117" fill="url(#hGrass)"/>
+      {/* Линия газона — плавный переход */}
+      <path d="M0,404 Q100,396 200,402 Q300,408 400,400 L400,520 L0,520Z" fill="#74B84A" opacity="0.7"/>
+      {/* Дорожка */}
+      <path d="M164,404 L160,520 L240,520 L236,404Z" fill="#D4C89A" opacity="0.8"/>
+      {[416,432,448,464,480,496,512].map((y,i)=>(
+        <line key={i} x1={165} y1={y} x2={235} y2={y}
+          stroke="#B8AE82" strokeWidth="1.2" opacity="0.5"/>
       ))}
-      {/* Shrubs */}
-      <ellipse cx="75" cy="422" rx="30" ry="20" fill="#5A9040"/>
-      <ellipse cx="90" cy="416" rx="24" ry="18" fill="#4E8038"/>
-      <ellipse cx="58" cy="418" rx="20" ry="16" fill="#62A048"/>
-      <ellipse cx="325" cy="422" rx="30" ry="20" fill="#5A9040"/>
-      <ellipse cx="340" cy="416" rx="24" ry="18" fill="#4E8038"/>
-      <ellipse cx="312" cy="418" rx="20" ry="16" fill="#62A048"/>
-      {/* Trees */}
-      <ellipse cx="12" cy="395" rx="22" ry="38" fill="#4A8838" opacity="0.85"/>
-      <rect x="8" y="428" width="8" height="18" fill="#7A5830"/>
-      <ellipse cx="388" cy="392" rx="22" ry="38" fill="#4A8838" opacity="0.85"/>
-      <rect x="384" y="424" width="8" height="18" fill="#7A5830"/>
-      {/* Lamp posts */}
-      <rect x="116" y="408" width="5" height="30" fill="#8A8070"/>
-      <ellipse cx="118" cy="407" rx="9" ry="6" fill="#E8D890" opacity="0.9"/>
-      <rect x="282" y="408" width="5" height="30" fill="#8A8070"/>
-      <ellipse cx="284" cy="407" rx="9" ry="6" fill="#E8D890" opacity="0.9"/>
+      {/* Кустики */}
+      <ellipse cx="80" cy="406" rx="26" ry="16" fill="#4E8A34"/>
+      <ellipse cx="96" cy="400" rx="20" ry="14" fill="#5A9A3C"/>
+      <ellipse cx="64" cy="404" rx="18" ry="13" fill="#62A040"/>
+      <ellipse cx="320" cy="406" rx="26" ry="16" fill="#4E8A34"/>
+      <ellipse cx="336" cy="400" rx="20" ry="14" fill="#5A9A3C"/>
+      <ellipse cx="304" cy="404" rx="18" ry="13" fill="#62A040"/>
     </svg>
   );
 }
@@ -703,21 +694,21 @@ export default function InteractiveHouse() {
                   <HouseBlockSimple
                     services={HOUSE_SERVICES.filter(s => s.id === 'roof')}
                     onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={0} clipY2={170}
+                    clipY1={0} clipY2={160}
                     borderRadiusStr="16px 16px 0 0"
                     sectionLabel="Кровля" labelColor="#8A2018"
                   />
                   <HouseBlockSimple
                     services={HOUSE_SERVICES.filter(s => ['facade','walls','interior','plumbing','electrical'].includes(s.id))}
                     onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={170} clipY2={380}
+                    clipY1={160} clipY2={370}
                     borderRadiusStr="0"
                     sectionLabel="Стены и отделка" labelColor="#3A5A3A"
                   />
                   <HouseBlockSimple
                     services={HOUSE_SERVICES.filter(s => s.id === 'foundation')}
                     onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={380} clipY2={520}
+                    clipY1={370} clipY2={520}
                     borderRadiusStr="0 0 16px 16px"
                     sectionLabel="Фундамент" labelColor="#5A4028"
                   />
