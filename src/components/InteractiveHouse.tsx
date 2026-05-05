@@ -456,12 +456,9 @@ function HouseBlockSimple({
   borderRadiusStr, sectionLabel, labelColor
 }: HouseBlockProps) {
   // aspect ratio этого блока относительно ширины SVG (400px)
-  // SVG viewBox = 400×520, блок занимает (clipY2-clipY1) единиц по высоте
-  // padding-bottom = (blockH / svgW) * 100%
+  // SVG viewBox = 400×500, блок занимает (clipY2-clipY1) единиц по высоте
   const pct = ((clipY2 - clipY1) / 400) * 100;
-  // Сдвиг SVG: нам нужно показать часть начиная с clipY1
-  // Полная высота SVG при данной ширине = (520/400)*100% = 130% ширины
-  // translateY = -(clipY1/520)*130% ... но проще: -(clipY1/400)*100%
+  // Полная высота SVG при данной ширине = (500/400)*100% = 125% ширины
   const translateYPct = (clipY1 / 400) * 100;
 
   return (
@@ -471,7 +468,7 @@ function HouseBlockSimple({
           <div style={{
             position: 'absolute',
             top: 0, left: 0, right: 0,
-            height: '130%', // 520/400 * 100%
+            height: '125%', // 500/400 * 100%
             transform: `translateY(-${translateYPct}%)`,
           }}>
             <HouseSVGFull />
@@ -665,21 +662,21 @@ export default function InteractiveHouse() {
                   <HouseBlockSimple
                     services={HOUSE_SERVICES.filter(s => s.id === 'roof')}
                     onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={0} clipY2={160}
+                    clipY1={0} clipY2={167}
                     borderRadiusStr="16px 16px 0 0"
                     sectionLabel="Кровля" labelColor="#8A2018"
                   />
                   <HouseBlockSimple
                     services={HOUSE_SERVICES.filter(s => ['facade','walls','interior','plumbing','electrical'].includes(s.id))}
                     onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={160} clipY2={370}
+                    clipY1={167} clipY2={387}
                     borderRadiusStr="0"
                     sectionLabel="Стены и отделка" labelColor="#3A5A3A"
                   />
                   <HouseBlockSimple
                     services={HOUSE_SERVICES.filter(s => s.id === 'foundation')}
                     onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={370} clipY2={520}
+                    clipY1={387} clipY2={500}
                     borderRadiusStr="0 0 16px 16px"
                     sectionLabel="Фундамент" labelColor="#5A4028"
                   />
