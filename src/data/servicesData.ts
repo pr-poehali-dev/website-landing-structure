@@ -21,7 +21,28 @@ export const servicesData: ServiceData[] = [
     desc: 'Полный цикл строительства домов — от фундамента до отделки. Работа «под ключ» с фиксированной сметой.',
     fullDesc: 'Берёмся за строительство домов любой сложности — от небольших дачных домиков до капитальных кирпичных коттеджей. Работаем по договору с фиксированной сметой: цена не меняется в процессе. Полный цикл от проекта до сдачи объекта.',
     items: ['Полный цикл строительства домов', 'Фундамент, коробка, крыша, отделка', 'Работа «под ключ»', 'Фиксированная смета без скрытых доплат'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/2546c559-7730-4880-bb43-f5b9f8793f9c.jpg',
+        caption: 'Каркас дома на свайном фундаменте',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/efdfd41f-599f-4024-aa4a-36586294120e.jpg',
+        caption: 'Каркасный дом с обшивкой вагонкой',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/a58ec2ce-8671-4428-a795-b524ec3085d7.jpg',
+        caption: 'Кладка кирпичного дома',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/3e0ab80a-20ec-4e99-98fa-9ff1f4a23592.jpg',
+        caption: 'Дом из газобетона под крышу',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/97b4897d-190f-481a-b553-69d37a032889.jpg',
+        caption: 'Готовый каркасный дом с отделкой',
+      },
+    ],
   },
   {
     slug: 'fundamentnye-raboty',
