@@ -193,7 +193,28 @@ export const servicesData: ServiceData[] = [
     desc: 'Укладка тротуарной плитки, мощение дорожек и дворов с подготовкой основания.',
     fullDesc: 'Укладываем тротуарную плитку и брусчатку на дорожках, во дворах и на площадках. Тщательно готовим основание: копаем, засыпаем щебень, песок, устанавливаем бордюры. Работа с дренажом.',
     items: ['Укладка тротуарной плитки', 'Мощение дорожек, дворов и площадок', 'Подготовка основания и дренаж', 'Установка бордюров'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/8bb06be1-7275-40d7-8654-e168f7b5509b.jpg',
+        caption: 'Укладка крупноформатной плитки на площадке',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/9f2d13cb-5873-4824-8ee8-289df049428c.jpg',
+        caption: 'Мощение заезда в гараж брусчаткой',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/62d16a91-2ca7-445b-b876-0550ce5a0a5e.jpg',
+        caption: 'Укладка плитки с установкой бордюров',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/637597f2-f080-4d75-ae7a-f288229326d2.jpg',
+        caption: 'Облицовка крыльца тёмной плиткой',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/ccf4b06e-986c-4892-bc20-c214f4ac0c75.jpg',
+        caption: 'Тротуарная плитка вдоль дома',
+      },
+    ],
   },
   {
     slug: 'bani',
