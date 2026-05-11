@@ -114,6 +114,27 @@ export const servicesData: ServiceData[] = [
     desc: 'Строительство беседок и террас разных типов. Открытые и закрытые, индивидуальные проекты.',
     fullDesc: 'Строим беседки и террасы по индивидуальным и типовым проектам. Открытые и закрытые, с мягкой или твёрдой кровлей, из дерева или металлокаркаса. Беседки под ключ с фундаментом, отделкой и освещением.',
     items: ['Беседки различных типов', 'Открытые и закрытые террасы', 'Индивидуальные проекты', 'Освещение и электрика'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/adc726a8-e13f-4ebf-a2c3-654da5b37f4b.jpg',
+        caption: 'Каркас террасы-пристройки к дому',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/5aead8ba-c8b5-4599-8e62-ae69a69c6833.jpg',
+        caption: 'Открытая терраса на кирпичных столбах',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/9f9bf4cb-752a-42fa-8b06-7d797f3cbfbe.jpg',
+        caption: 'Терраса вокруг каркасного дома',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/ab12c1a5-e774-46f6-87ae-30591ca577e0.jpg',
+        caption: 'Деревянная беседка с балясинами',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/5681934e-e4e6-4302-a1b8-98d1f1cb0c53.jpg',
+        caption: 'Навес из поликарбоната на металлокаркасе',
+      },
+    ],
   },
 ];
