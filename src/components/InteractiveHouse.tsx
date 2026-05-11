@@ -1,6 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+
+const SERVICE_SLUGS: Record<string, string> = {
+  roof:       'krovelnyye-raboty',
+  facade:     'fasadnye-raboty',
+  walls:      'stroitelstvo-s-nulya',
+  interior:   'stroitelstvo-s-nulya',
+  foundation: 'fundamentnye-raboty',
+  banya:      'bani',
+  gazebo:     'besedki-terrasy',
+  terrace:    'besedki-terrasy',
+  fence:      'zabory',
+  gate:       'zabory',
+  paving:     'plitochnye-raboty',
+  landscape:  'besedki-terrasy',
+};
 
 type ServiceItem = {
   id: string;
@@ -447,6 +463,7 @@ function HouseBlock({
   onSelect: (s: ServiceItem) => void;
   selected: string | null;
 }) {
+  const navigate = useNavigate();
   return (
     <div className="relative w-full overflow-hidden" style={{ borderRadius: '20px' }}>
       {/* SVG aspect ratio 400:500 = 125% */}
@@ -462,7 +479,7 @@ function HouseBlock({
         return (
           <motion.button
             key={svc.id}
-            onClick={() => onSelect(svc)}
+            onClick={() => { const slug = SERVICE_SLUGS[svc.id]; if (slug) navigate(`/services/${slug}`); else onSelect(svc); }}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.94 }}
             style={{
@@ -507,6 +524,7 @@ function YardBlock({
   onSelect: (s: ServiceItem) => void;
   selected: string | null;
 }) {
+  const navigate = useNavigate();
   return (
     <div className="relative w-full overflow-hidden" style={{ borderRadius: '20px' }}>
       {/* SVG aspect ratio 600:460 */}
@@ -521,7 +539,7 @@ function YardBlock({
         return (
           <motion.button
             key={svc.id}
-            onClick={() => onSelect(svc)}
+            onClick={() => { const slug = SERVICE_SLUGS[svc.id]; if (slug) navigate(`/services/${slug}`); else onSelect(svc); }}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.94 }}
             initial={false}
