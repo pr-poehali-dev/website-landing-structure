@@ -374,39 +374,26 @@ export default function Index() {
       {/* PORTFOLIO */}
       <section id="portfolio" className="section-padding" style={{ background: 'hsl(40,30%,97%)' }}>
         <div className="container-max">
-          <FadeIn className="text-center mb-14">
+          <FadeIn className="text-center">
             <div className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-5"
               style={{ background: 'hsl(82,22%,88%)', color: 'hsl(82,28%,35%)' }}>
               Портфолио
             </div>
-            <h2 className="text-4xl md:text-5xl font-light"
+            <h2 className="text-4xl md:text-5xl font-light mb-4"
               style={{ fontFamily: 'Cormorant Garamond, serif', color: 'hsl(30,15%,15%)' }}>
               Наши работы
             </h2>
+            <p className="text-base mb-8 max-w-md mx-auto" style={{ color: 'hsl(30,10%,45%)' }}>
+              Реальные фотографии объектов по всем направлениям — кровля, фасады, фундаменты, бани и многое другое.
+            </p>
+            <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+              onClick={() => navigate('/portfolio')}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold text-white"
+              style={{ background: 'hsl(82,28%,35%)' }}>
+              Посмотреть портфолио работ
+              <Icon name="ArrowRight" size={18} />
+            </motion.button>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-6">
-            {portfolio.map((p, i) => (
-              <FadeIn key={p.title} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -5 }}
-                  className="rounded-2xl overflow-hidden group cursor-pointer"
-                  style={{ border: '1px solid hsl(38,20%,85%)' }}
-                >
-                  <div className="relative h-60 overflow-hidden">
-                    <img
-                      src={p.img}
-                      alt={p.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-5" style={{ background: 'hsl(38,25%,95%)' }}>
-                    <h3 className="text-base font-semibold mb-1" style={{ color: 'hsl(30,15%,18%)' }}>{p.title}</h3>
-                    <p className="text-sm" style={{ color: 'hsl(30,10%,48%)' }}>{p.area} · {p.type}</p>
-                  </div>
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 
