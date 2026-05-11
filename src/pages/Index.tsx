@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Icon from '@/components/ui/icon';
 import InteractiveHouse from '@/components/InteractiveHouse';
 
@@ -33,10 +33,66 @@ const navLinks = [
 ];
 
 const services = [
-  { icon: 'Layers', title: 'Фундаментные работы', desc: 'Геологическое исследование, монолитный и свайный фундамент под ключ.' },
-  { icon: 'Square', title: 'Возведение стен', desc: 'Газобетон, кирпич, дерево — любые материалы с гарантией качества.' },
-  { icon: 'Home', title: 'Кровельные работы', desc: 'Монтаж кровли любой сложности: металлочерепица, мягкая кровля, сланец.' },
-  { icon: 'Paintbrush', title: 'Внутренняя отделка', desc: 'Полный цикл чистовой отделки по вашему дизайн-проекту.' },
+  {
+    icon: 'Home',
+    title: 'Строительство с нуля',
+    desc: 'Полный цикл строительства домов — от фундамента до отделки. Работа «под ключ» с фиксированной сметой.',
+    items: ['Полный цикл строительства домов', 'Фундамент, коробка, крыша, отделка', 'Работа «под ключ»'],
+  },
+  {
+    icon: 'Layers',
+    title: 'Фундаментные работы',
+    desc: 'Геологическое исследование, монолитный, ленточный и свайный фундамент с гарантией.',
+    items: ['Геологическое исследование грунта', 'Ленточный, свайный или плитный фундамент', 'Современное армирование'],
+  },
+  {
+    icon: 'Home',
+    title: 'Кровельные работы',
+    desc: 'Монтаж кровли любой сложности: металлочерепица, мягкая кровля, натуральная черепица.',
+    items: ['Двускатные, вальмовые, мансардные крыши', 'Металлочерепица, мягкая кровля, черепица', 'Полная герметичность и долговечность'],
+  },
+  {
+    icon: 'Building2',
+    title: 'Фасадные работы',
+    desc: 'Утепление и отделка фасадов. Штукатурка, покраска, реставрация.',
+    items: ['Утепление фасадов', 'Штукатурка и покраска', 'Ремонт и реставрация фасадов'],
+  },
+  {
+    icon: 'Paintbrush',
+    title: 'Внутренняя отделка',
+    desc: 'Полный цикл чистовой отделки по вашему дизайн-проекту или с нуля.',
+    items: ['Штукатурка, стяжка, плитка, обои, покраска', 'По дизайн-проекту или создадим с нуля', 'Полный цикл под ключ'],
+  },
+  {
+    icon: 'Wrench',
+    title: 'Ремонт и восстановление домов',
+    desc: 'Капитальный ремонт, замена конструкций, восстановление жилого состояния старых зданий.',
+    items: ['Капитальный ремонт', 'Замена конструкций и коммуникаций', 'Восстановление жилого состояния зданий'],
+  },
+  {
+    icon: 'Shield',
+    title: 'Заборы и ограждения',
+    desc: 'Установка заборов из металла, дерева и бетона. Ремонт и усиление существующих ограждений.',
+    items: ['Металлические, деревянные, бетонные заборы', 'Ремонт и усиление ограждений', 'Фундамент под забор'],
+  },
+  {
+    icon: 'Grid3x3',
+    title: 'Уличные плиточные работы',
+    desc: 'Укладка тротуарной плитки, мощение дорожек и дворов с подготовкой основания.',
+    items: ['Укладка тротуарной плитки', 'Мощение дорожек, дворов и площадок', 'Подготовка основания и дренаж'],
+  },
+  {
+    icon: 'Flame',
+    title: 'Строительство бань',
+    desc: 'Проектирование и строительство бань под ключ. Деревянные и каркасные бани.',
+    items: ['Проектирование и строительство под ключ', 'Деревянные и каркасные бани', 'Парная, моечная, комната отдыха'],
+  },
+  {
+    icon: 'TreePine',
+    title: 'Беседки и террасы',
+    desc: 'Строительство беседок и террас разных типов. Открытые и закрытые, индивидуальные проекты.',
+    items: ['Беседки различных типов', 'Открытые и закрытые террасы', 'Индивидуальные проекты'],
+  },
 ];
 
 const advantages = [
@@ -82,6 +138,73 @@ const reviews = [
     role: 'Особняк 420 м², Рублёво-Успенское',
   },
 ];
+
+function ServiceCard({
+  service,
+  delay,
+  onOrder,
+}: {
+  service: typeof services[0];
+  delay: number;
+  onOrder: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <FadeIn delay={delay} className="h-full">
+      <motion.div
+        whileHover={{ y: -4 }}
+        className="p-6 rounded-2xl flex flex-col h-full"
+        style={{ background: 'hsl(40,30%,97%)', border: '1px solid hsl(38,20%,85%)' }}
+      >
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 flex-shrink-0"
+          style={{ background: 'hsl(82,22%,90%)' }}>
+          <Icon name={service.icon} size={22} style={{ color: 'hsl(82,28%,35%)' }} />
+        </div>
+        <h3 className="text-lg font-semibold mb-2" style={{ color: 'hsl(30,15%,18%)' }}>{service.title}</h3>
+        <p className="text-sm leading-relaxed mb-4" style={{ color: 'hsl(30,10%,45%)' }}>{service.desc}</p>
+
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.ul
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-4 space-y-1.5 overflow-hidden"
+            >
+              {service.items.map(item => (
+                <li key={item} className="flex items-start gap-2 text-sm" style={{ color: 'hsl(30,10%,38%)' }}>
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: 'hsl(82,28%,45%)' }} />
+                  {item}
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+
+        <div className="mt-auto flex items-center gap-3">
+          <button
+            className="text-sm font-medium flex items-center gap-1.5"
+            style={{ color: 'hsl(82,28%,38%)' }}
+            onClick={() => setOpen(v => !v)}
+          >
+            {open ? 'Скрыть' : 'Подробнее'}
+            <motion.span animate={{ rotate: open ? 90 : 0 }} transition={{ duration: 0.22 }}>
+              <Icon name="ChevronRight" size={14} />
+            </motion.span>
+          </button>
+          <button
+            className="ml-auto text-sm font-semibold px-3 py-1.5 rounded-lg"
+            style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }}
+            onClick={onOrder}
+          >
+            Заказать
+          </button>
+        </div>
+      </motion.div>
+    </FadeIn>
+  );
+}
 
 export default function Index() {
   const scrollTo = (id: string) => {
@@ -292,27 +415,7 @@ export default function Index() {
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
-              <FadeIn key={s.title} delay={i * 0.07}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="p-6 rounded-2xl group cursor-pointer h-full"
-                  style={{ background: 'hsl(40,30%,97%)', border: '1px solid hsl(38,20%,85%)' }}
-                >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ background: 'hsl(82,22%,90%)' }}>
-                    <Icon name={s.icon} size={22} style={{ color: 'hsl(82,28%,35%)' }} />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'hsl(30,15%,18%)' }}>{s.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'hsl(30,10%,45%)' }}>{s.desc}</p>
-                  <button
-                    className="mt-4 text-sm font-medium flex items-center gap-1.5"
-                    style={{ color: 'hsl(82,28%,38%)' }}
-                    onClick={() => scrollTo('contact')}
-                  >
-                    Подробнее <Icon name="ArrowRight" size={14} />
-                  </button>
-                </motion.div>
-              </FadeIn>
+              <ServiceCard key={s.title} service={s} delay={i * 0.07} onOrder={() => scrollTo('contact')} />
             ))}
           </div>
         </div>
