@@ -367,41 +367,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* STEPS */}
-      <section className="section-padding" style={{ background: 'hsl(38,25%,94%)' }}>
-        <div className="container-max">
-          <FadeIn className="text-center mb-14">
-            <div className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-5"
-              style={{ background: 'hsl(82,22%,88%)', color: 'hsl(82,28%,35%)' }}>
-              Процесс
-            </div>
-            <h2 className="text-4xl md:text-5xl font-light"
-              style={{ fontFamily: 'Cormorant Garamond, serif', color: 'hsl(30,15%,15%)' }}>
-              Как мы работаем
-            </h2>
-          </FadeIn>
-          <div className="grid md:grid-cols-4 gap-8">
-            {steps.map((s, i) => (
-              <FadeIn key={s.num} delay={i * 0.1}>
-                <div className="relative">
-                  {i < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-6 left-full w-full h-px z-0"
-                      style={{ background: 'linear-gradient(90deg, hsl(82,28%,55%), transparent)' }} />
-                  )}
-                  <div className="relative z-10">
-                    <div className="text-5xl font-light mb-4"
-                      style={{ fontFamily: 'Cormorant Garamond, serif', color: 'hsl(82,28%,35%)' }}>
-                      {s.num}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2" style={{ color: 'hsl(30,15%,18%)' }}>{s.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: 'hsl(30,10%,45%)' }}>{s.desc}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* REVIEWS */}
       <section id="reviews" className="section-padding" style={{ background: 'hsl(40,30%,97%)' }}>
