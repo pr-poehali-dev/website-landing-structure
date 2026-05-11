@@ -129,7 +129,28 @@ export const servicesData: ServiceData[] = [
     desc: 'Установка заборов из металла, дерева и бетона. Ремонт и усиление существующих ограждений.',
     fullDesc: 'Устанавливаем заборы и ограждения любых типов: из профнастила, сварные металлические, деревянные, бетонные, кирпичные. Закладываем фундамент под забор и устанавливаем ворота и калитки.',
     items: ['Металлические, деревянные, бетонные заборы', 'Ремонт и усиление ограждений', 'Фундамент под забор', 'Ворота и калитки'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/414e95bf-8af5-43f9-bb7b-e081bbbe61df.jpg',
+        caption: 'Откатные ворота с автоматикой на кирпичных столбах',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/a5594a94-86b3-4a2d-a31c-67e74ba49f1c.jpg',
+        caption: 'Откатные ворота с автоматикой на кирпичных столбах',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/b3304618-19e5-4dbe-80d3-4e40a338ef93.jpg',
+        caption: 'Забор из профнастила с коваными воротами',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/2da2c078-05b7-4b21-bbad-70a990aa4641.jpg',
+        caption: 'Распашные ворота с автоматикой',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/5ce80fcd-833b-4bcc-9941-d92fdf586f7f.jpg',
+        caption: 'Металлический забор-жалюзи на бетонных столбах',
+      },
+    ],
   },
   {
     slug: 'plitochnye-raboty',
