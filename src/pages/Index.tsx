@@ -113,13 +113,21 @@ function ServiceCard({
             Подробнее
             <Icon name="ChevronRight" size={14} />
           </button>
-          <button
-            className="ml-auto text-sm font-semibold px-3 py-1.5 rounded-lg"
-            style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }}
-            onClick={onOrder}
-          >
-            Заказать
-          </button>
+          <div className="ml-auto flex items-center gap-2">
+            <a href="tel:+79051785769"
+              className="flex items-center gap-1 text-sm font-semibold px-3 py-1.5 rounded-lg"
+              style={{ background: 'hsl(38,20%,88%)', color: 'hsl(30,15%,30%)' }}>
+              <Icon name="Phone" size={13} />
+              Позвонить
+            </a>
+            <button
+              className="text-sm font-semibold px-3 py-1.5 rounded-lg"
+              style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }}
+              onClick={onOrder}
+            >
+              Заказать
+            </button>
+          </div>
         </div>
       </motion.div>
     </FadeIn>
@@ -216,15 +224,18 @@ export default function Index() {
               >
                 Рассчитать стоимость
               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => scrollTo('portfolio')}
-                className="px-8 py-4 rounded-2xl font-semibold text-lg"
+              <a href="tel:+79051785769"
+                className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold text-lg"
                 style={{ background: 'rgba(255,255,255,0.12)', color: 'white', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.25)' }}
               >
-                Смотреть работы
-              </motion.button>
+                <Icon name="Phone" size={20} />
+                Позвонить
+              </a>
+            </div>
+            <div className="mt-3">
+              <a href="tel:+79051785769" className="text-base font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                +7 (905) 178-57-69
+              </a>
             </div>
           </motion.div>
 

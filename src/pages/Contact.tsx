@@ -25,20 +25,31 @@ export default function Contact() {
               Оставьте заявку, и мы свяжемся с вами в течение 30 минут для бесплатной консультации.
             </p>
             <div className="space-y-4">
-              {[
-                { icon: 'MapPin', text: 'Москва, ул. Садовая-Триумфальная, 16' },
-                { icon: 'Mail',   text: 'info@stroydom.ru' },
-                { icon: 'Clock',  text: 'Работаем круглосуточно, 7 дней в неделю' },
-              ].map((c) => (
+              {([
+                { icon: 'MapPin', text: 'Москва и Московская область', href: '' },
+                { icon: 'Phone',  text: '+7 (905) 178-57-69', href: 'tel:+79051785769' },
+                { icon: 'Clock',  text: 'Работаем круглосуточно, 7 дней в неделю', href: '' },
+              ] as { icon: string; text: string; href: string }[]).map((c) => (
                 <div key={c.text} className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{ background: 'hsl(82,22%,88%)' }}>
                     <Icon name={c.icon} size={16} style={{ color: 'hsl(82,28%,35%)' }} />
                   </div>
-                  <span className="text-sm" style={{ color: 'hsl(30,15%,30%)' }}>{c.text}</span>
+                  {c.href
+                    ? <a href={c.href} className="text-sm font-semibold hover:underline"
+                        style={{ color: 'hsl(82,28%,35%)' }}>{c.text}</a>
+                    : <span className="text-sm" style={{ color: 'hsl(30,15%,30%)' }}>{c.text}</span>
+                  }
                 </div>
               ))}
             </div>
+
+            <a href="tel:+79051785769"
+              className="mt-8 flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-semibold text-white"
+              style={{ background: 'hsl(82,28%,35%)' }}>
+              <Icon name="Phone" size={18} className="text-white" />
+              Позвонить нам
+            </a>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>

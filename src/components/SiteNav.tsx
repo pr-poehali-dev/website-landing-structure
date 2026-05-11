@@ -46,15 +46,23 @@ export default function SiteNav() {
             );
           })}
         </div>
-        <motion.button
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={() => openModal()}
-          className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white hidden md:block"
-          style={{ background: 'hsl(82,28%,35%)' }}
-        >
-          Рассчитать стоимость
-        </motion.button>
+        <div className="hidden md:flex items-center gap-3">
+          <a href="tel:+79051785769"
+            className="flex items-center gap-1.5 text-sm font-semibold"
+            style={{ color: 'hsl(82,28%,35%)' }}>
+            <Icon name="Phone" size={15} />
+            +7 (905) 178-57-69
+          </a>
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => openModal()}
+            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white"
+            style={{ background: 'hsl(82,28%,35%)' }}
+          >
+            Рассчитать стоимость
+          </motion.button>
+        </div>
       </div>
     </motion.nav>
   );

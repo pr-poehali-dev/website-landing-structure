@@ -114,11 +114,19 @@ export default function ServiceDetail() {
               <p className="text-lg font-medium text-white mb-1">Нужна {service.title.toLowerCase()}?</p>
               <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>Оставьте заявку — рассчитаем стоимость бесплатно</p>
             </div>
-            <button onClick={() => openModal(service.title)}
-              className="flex-shrink-0 px-6 py-3 rounded-xl text-sm font-semibold"
-              style={{ background: 'hsl(82,28%,45%)', color: 'white' }}>
-              Получить расчёт
-            </button>
+            <div className="flex flex-shrink-0 items-center gap-3">
+              <a href="tel:+79051785769"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold"
+                style={{ background: 'rgba(255,255,255,0.12)', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>
+                <Icon name="Phone" size={15} />
+                Позвонить
+              </a>
+              <button onClick={() => openModal(service.title)}
+                className="px-6 py-3 rounded-xl text-sm font-semibold"
+                style={{ background: 'hsl(82,28%,45%)', color: 'white' }}>
+                Получить расчёт
+              </button>
+            </div>
           </div>
         </FadeIn>
       </div>
