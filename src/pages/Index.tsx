@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import InteractiveHouse from '@/components/InteractiveHouse';
 
@@ -25,11 +26,11 @@ function FadeIn({ children, delay = 0, className = '' }: { children: React.React
 }
 
 const navLinks = [
-  { label: 'О нас', href: '#about' },
-  { label: 'Услуги', href: '#services' },
-  { label: 'Портфолио', href: '#portfolio' },
-  { label: 'Отзывы', href: '#reviews' },
-  { label: 'Контакты', href: '#contact' },
+  { label: 'О нас',     href: '/about' },
+  { label: 'Услуги',    href: '/services' },
+  { label: 'Портфолио', href: '/portfolio' },
+  { label: 'Отзывы',    href: '/reviews' },
+  { label: 'Контакты',  href: '/contact' },
 ];
 
 const services = [
@@ -201,6 +202,7 @@ function ServiceCard({
 }
 
 export default function Index() {
+  const navigate = useNavigate();
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -217,30 +219,30 @@ export default function Index() {
         style={{ background: 'rgba(250,247,240,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid hsl(38,20%,88%)' }}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'hsl(82,28%,35%)' }}>
               <Icon name="Home" size={16} className="text-white" />
             </div>
             <span className="text-lg font-bold" style={{ color: 'hsl(82,28%,28%)' }}>СтройДом</span>
-          </div>
+          </Link>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((l) => (
-              <button
+              <Link
                 key={l.href}
-                onClick={() => scrollTo(l.href.slice(1))}
+                to={l.href}
                 className="text-sm font-medium transition-colors"
                 style={{ color: 'hsl(30,15%,35%)' }}
                 onMouseEnter={e => (e.currentTarget.style.color = 'hsl(82,28%,35%)')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'hsl(30,15%,35%)')}
               >
                 {l.label}
-              </button>
+              </Link>
             ))}
           </div>
           <motion.button
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => scrollTo('contact')}
+            onClick={() => navigate('/contact')}
             className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white hidden md:block"
             style={{ background: 'hsl(82,28%,35%)' }}
           >
@@ -688,13 +690,9 @@ export default function Index() {
           <p className="text-sm">© 2024 СтройДом. Строительство домов под ключ.</p>
           <div className="flex gap-6">
             {navLinks.slice(0, 3).map((l) => (
-              <button
-                key={l.href}
-                onClick={() => scrollTo(l.href.slice(1))}
-                className="text-sm hover:text-white transition-colors"
-              >
+              <Link key={l.href} to={l.href} className="text-sm hover:text-white transition-colors">
                 {l.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
