@@ -7,7 +7,7 @@ const SERVICE_SLUGS: Record<string, string> = {
   roof:       'krovelnyye-raboty',
   facade:     'fasadnye-raboty',
   walls:      'stroitelstvo-s-nulya',
-  interior:   'stroitelstvo-s-nulya',
+  interior:   'fasadnye-raboty',
   foundation: 'fundamentnye-raboty',
   banya:      'bani',
   gazebo:     'besedki-terrasy',
