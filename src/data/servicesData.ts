@@ -51,7 +51,28 @@ export const servicesData: ServiceData[] = [
     desc: 'Геологическое исследование, монолитный, ленточный и свайный фундамент с гарантией.',
     fullDesc: 'Правильный фундамент — основа долговечного дома. Проводим геологическое исследование грунта, подбираем оптимальный тип фундамента и выполняем монтаж с гарантией. Работаем с ленточными, свайными, плитными и комбинированными фундаментами.',
     items: ['Геологическое исследование грунта', 'Ленточный, свайный или плитный фундамент', 'Современное армирование', 'Гидроизоляция и дренаж'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/17468602-88a4-4c64-98f8-c8163fb7e32b.jpg',
+        caption: 'Монолитный столбчатый фундамент с армированием',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/6ab825d1-660e-46a7-a9c3-42fc505f07c1.jpg',
+        caption: 'Заливка отмостки с гидроизоляцией',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/62a33acd-a171-4fc6-a01d-07391aa3270c.jpg',
+        caption: 'Армирование плитного фундамента',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/955c6a63-caa4-4f89-9194-a46f3646fe20.jpg',
+        caption: 'Армирование плиты с утеплением и трубами тёплого пола',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/65069917-0a75-424c-996e-8236e39c06df.jpg',
+        caption: 'Готовый плитный фундамент с гидроизоляцией',
+      },
+    ],
   },
   {
     slug: 'krovelnyye-raboty',
