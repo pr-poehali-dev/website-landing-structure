@@ -438,72 +438,73 @@ function YardSVGFull() {
   );
 }
 
-// ─── Блок дома (вырезает свою полосу из цельного SVG) ────────────────────────
-interface HouseBlockProps {
+// Координаты точек привязки на SVG (в % от 400×500) для каждой услуги дома
+const HOUSE_BTN_POS: Record<string, { x: number; y: number }> = {
+  roof:       { x: 50,  y: 19 },
+  facade:     { x: 72,  y: 43 },
+  walls:      { x: 72,  y: 57 },
+  interior:   { x: 28,  y: 57 },
+  plumbing:   { x: 28,  y: 70 },
+  electrical: { x: 72,  y: 70 },
+  foundation: { x: 50,  y: 84 },
+};
+
+// ─── Единый блок дома с кнопками поверх SVG ───────────────────────────────────
+function HouseBlock({
+  services, onSelect, selected
+}: {
   services: ServiceItem[];
   onSelect: (s: ServiceItem) => void;
   selected: string | null;
-  clipY1: number;
-  clipY2: number;
-  borderRadiusStr: string;
-  sectionLabel: string;
-  labelColor: string;
-}
-
-function HouseBlockSimple({
-  services, onSelect, selected,
-  clipY1, clipY2,
-  borderRadiusStr, sectionLabel, labelColor
-}: HouseBlockProps) {
-  // aspect ratio этого блока относительно ширины SVG (400px)
-  // SVG viewBox = 400×500, блок занимает (clipY2-clipY1) единиц по высоте
-  const pct = ((clipY2 - clipY1) / 400) * 100;
-  // Полная высота SVG при данной ширине = (500/400)*100% = 125% ширины
-  const translateYPct = (clipY1 / 400) * 100;
-
+}) {
   return (
-    <div className="relative w-full overflow-hidden" style={{ borderRadius: borderRadiusStr }}>
-      <div style={{ paddingBottom: `${pct}%`, position: 'relative' }}>
-        <div className="absolute inset-0 overflow-hidden">
-          <div style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0,
-            height: '125%', // 500/400 * 100%
-            transform: `translateY(-${translateYPct}%)`,
-          }}>
-            <HouseSVGFull />
-          </div>
+    <div className="relative w-full overflow-hidden" style={{ borderRadius: '20px' }}>
+      {/* SVG aspect ratio 400:500 = 125% */}
+      <div style={{ paddingBottom: '125%', position: 'relative' }}>
+        <div className="absolute inset-0">
+          <HouseSVGFull />
         </div>
       </div>
-      {/* Overlay */}
-      <div className="absolute inset-0 flex flex-col justify-end p-2.5">
-        <div className="absolute top-2 left-3">
-          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full"
-            style={{ background: 'rgba(255,255,255,0.6)', color: labelColor, backdropFilter: 'blur(4px)' }}>
-            {sectionLabel}
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {services.map(svc => {
-            const isActive = selected === svc.id;
-            return (
-              <motion.button key={svc.id} onClick={() => onSelect(svc)}
-                whileHover={{ scale: 1.06, y: -1 }} whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold"
-                style={{
-                  background: isActive ? svc.color : 'rgba(255,255,255,0.85)',
-                  color: isActive ? '#fff' : '#1A1208',
-                  boxShadow: isActive ? `0 4px 14px ${svc.color}50` : '0 1px 5px rgba(0,0,0,0.12)',
-                  backdropFilter: 'blur(6px)',
-                  border: isActive ? `1.5px solid ${svc.color}` : '1.5px solid rgba(255,255,255,0.75)',
-                }}>
-                <Icon name={svc.icon} size={12} fallback="Star"/>
-                {svc.label}
-              </motion.button>
-            );
-          })}
-        </div>
-      </div>
+      {/* Кнопки поверх SVG */}
+      {services.map(svc => {
+        const pos = HOUSE_BTN_POS[svc.id] ?? { x: 50, y: 50 };
+        const isActive = selected === svc.id;
+        return (
+          <motion.button
+            key={svc.id}
+            onClick={() => onSelect(svc)}
+            whileHover={{ scale: 1.08, y: -2 }}
+            whileTap={{ scale: 0.94 }}
+            style={{
+              position: 'absolute',
+              left: `${pos.x}%`,
+              top: `${pos.y}%`,
+              transform: 'translate(-50%, -50%)',
+              background: isActive ? svc.color : 'rgba(255,255,255,0.9)',
+              color: isActive ? '#fff' : '#1A1208',
+              boxShadow: isActive
+                ? `0 4px 18px ${svc.color}60, 0 0 0 2px ${svc.color}`
+                : '0 2px 8px rgba(0,0,0,0.18)',
+              border: isActive ? `2px solid ${svc.color}` : '1.5px solid rgba(255,255,255,0.9)',
+              backdropFilter: 'blur(8px)',
+              borderRadius: '12px',
+              padding: '5px 10px',
+              fontSize: '11px',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              whiteSpace: 'nowrap',
+              cursor: 'pointer',
+              zIndex: isActive ? 20 : 10,
+              transition: 'background 0.2s, color 0.2s, box-shadow 0.2s',
+            }}
+          >
+            <Icon name={svc.icon} size={12} fallback="Star"/>
+            {svc.label}
+          </motion.button>
+        );
+      })}
     </div>
   );
 }
@@ -656,29 +657,11 @@ export default function InteractiveHouse() {
                   initial={{ rotateY: -85, opacity: 0, scale: 0.95 }}
                   animate={{ rotateY: 0, opacity: 1, scale: 1 }}
                   transition={{ duration: 0.44, ease: [0.4, 0, 0.6, 1] }}
-                  className="flex flex-col"
-                  style={{ gap: '3px' }}
                 >
-                  <HouseBlockSimple
-                    services={HOUSE_SERVICES.filter(s => s.id === 'roof')}
-                    onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={0} clipY2={167}
-                    borderRadiusStr="16px 16px 0 0"
-                    sectionLabel="Кровля" labelColor="#8A2018"
-                  />
-                  <HouseBlockSimple
-                    services={HOUSE_SERVICES.filter(s => ['facade','walls','interior','plumbing','electrical'].includes(s.id))}
-                    onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={167} clipY2={387}
-                    borderRadiusStr="0"
-                    sectionLabel="Стены и отделка" labelColor="#3A5A3A"
-                  />
-                  <HouseBlockSimple
-                    services={HOUSE_SERVICES.filter(s => s.id === 'foundation')}
-                    onSelect={setSelected} selected={selected?.id ?? null}
-                    clipY1={387} clipY2={500}
-                    borderRadiusStr="0 0 16px 16px"
-                    sectionLabel="Фундамент" labelColor="#5A4028"
+                  <HouseBlock
+                    services={HOUSE_SERVICES}
+                    onSelect={setSelected}
+                    selected={selected?.id ?? null}
                   />
                 </motion.div>
               ) : (
