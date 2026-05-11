@@ -122,18 +122,10 @@ function ServiceCard({ s, i, onOrder }: { s: ServiceData; i: number; onOrder: ()
             Подробнее
             <Icon name="ChevronRight" size={14} />
           </button>
-          <div className="ml-auto flex items-center gap-2">
-            <a href="tel:+79051785769"
-              className="flex items-center gap-1 text-sm font-semibold px-3 py-1.5 rounded-lg"
-              style={{ background: 'hsl(38,20%,88%)', color: 'hsl(30,15%,30%)' }}>
-              <Icon name="Phone" size={13} />
-              Позвонить
-            </a>
-            <button className="text-sm font-semibold px-3 py-1.5 rounded-lg"
-              style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }} onClick={onOrder}>
-              Заказать
-            </button>
-          </div>
+          <button className="ml-auto text-sm font-semibold px-3 py-1.5 rounded-lg"
+            style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }} onClick={onOrder}>
+            Заказать
+          </button>
         </div>
       </motion.div>
     </FadeIn>
