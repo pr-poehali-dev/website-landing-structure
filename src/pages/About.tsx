@@ -23,6 +23,16 @@ const stats = [
   { num: '100%', label: 'сдача в срок' },
 ];
 
+const advantages = [
+  { icon: 'Shield',     title: 'Гарантия 10 лет',              desc: 'Даём письменную гарантию на все конструктивные работы' },
+  { icon: 'FileCheck',  title: 'Фиксированная смета',           desc: 'Цена не меняется в процессе строительства' },
+  { icon: 'Clock',      title: 'Сдача в срок',                  desc: 'Штрафные санкции за каждый день просрочки по договору' },
+  { icon: 'Users',      title: 'Свои бригады',                  desc: 'Только штатные специалисты без субподряда' },
+  { icon: 'Award',      title: 'Сертифицированные материалы',   desc: 'Работаем только с проверенными поставщиками' },
+  { icon: 'Camera',     title: 'Фотоотчёт',                     desc: 'Еженедельный фотоотчёт о ходе строительства' },
+  { icon: 'Headphones', title: 'Персональный менеджер',         desc: 'Один контакт на весь период строительства' },
+];
+
 const team = [
   { icon: 'HardHat',    role: 'Прорабы',         desc: 'Опытные руководители объектов с опытом от 10 лет' },
   { icon: 'Ruler',      role: 'Архитекторы',      desc: 'Разработка проектов под любой участок и бюджет' },
@@ -102,6 +112,36 @@ export default function About() {
                 ))}
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Advantages */}
+      <section className="section-padding" style={{ background: 'hsl(82,28%,35%)' }}>
+        <div className="container-max">
+          <FadeIn className="text-center mb-14">
+            <div className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-5"
+              style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)' }}>
+              Преимущества
+            </div>
+            <h2 className="text-4xl md:text-5xl font-light text-white"
+              style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Почему выбирают нас
+            </h2>
+          </FadeIn>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {advantages.map((a, i) => (
+              <FadeIn key={a.title} delay={i * 0.06}>
+                <div className="p-5 rounded-2xl" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3"
+                    style={{ background: 'rgba(255,255,255,0.15)' }}>
+                    <Icon name={a.icon} size={18} className="text-white" />
+                  </div>
+                  <h3 className="text-base font-semibold text-white mb-1.5">{a.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>{a.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
