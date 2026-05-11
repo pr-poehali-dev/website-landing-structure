@@ -429,20 +429,37 @@ export default function Index() {
                 Оставьте заявку, и мы свяжемся с вами в течение 30 минут для бесплатной консультации.
               </p>
               <div className="space-y-4">
-                {[
-                  { icon: 'MapPin', text: 'Москва, ул. Садовая-Триумфальная, 16' },
-                  { icon: 'Mail', text: 'info@stroydom.ru' },
-                  { icon: 'Clock', text: 'Работаем круглосуточно, 7 дней в неделю' },
-                ].map((c) => (
-                  <div key={c.text} className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'hsl(82,22%,88%)' }}>
-                      <Icon name={c.icon} size={16} style={{ color: 'hsl(82,28%,35%)' }} />
-                    </div>
-                    <span className="text-sm" style={{ color: 'hsl(30,15%,30%)' }}>{c.text}</span>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'hsl(82,22%,88%)' }}>
+                    <Icon name="Phone" size={16} style={{ color: 'hsl(82,28%,35%)' }} />
                   </div>
-                ))}
+                  <a href="tel:+79051785769" className="text-xl font-bold hover:underline"
+                    style={{ color: 'hsl(82,28%,35%)' }}>
+                    +7 (905) 178-57-69
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'hsl(82,22%,88%)' }}>
+                    <Icon name="MapPin" size={16} style={{ color: 'hsl(82,28%,35%)' }} />
+                  </div>
+                  <span className="text-sm" style={{ color: 'hsl(30,15%,30%)' }}>Москва и Московская область</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'hsl(82,22%,88%)' }}>
+                    <Icon name="Clock" size={16} style={{ color: 'hsl(82,28%,35%)' }} />
+                  </div>
+                  <span className="text-sm" style={{ color: 'hsl(30,15%,30%)' }}>Работаем круглосуточно, 7 дней в неделю</span>
+                </div>
               </div>
+              <a href="tel:+79051785769"
+                className="mt-6 flex items-center justify-center gap-2 py-4 rounded-2xl font-semibold text-white"
+                style={{ background: 'hsl(82,28%,35%)' }}>
+                <Icon name="Phone" size={18} />
+                Позвонить нам
+              </a>
             </FadeIn>
 
             <FadeIn delay={0.15}>
