@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import InteractiveHouse from '@/components/InteractiveHouse';
+import { servicesData } from '@/data/servicesData';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/files/117df234-1330-4fb8-85ab-dc40c41a875f.jpg';
 const PORTFOLIO_IMG1 = 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/files/117df234-1330-4fb8-85ab-dc40c41a875f.jpg';
@@ -33,62 +34,7 @@ const navLinks = [
   { label: 'Контакты',  href: '/contact' },
 ];
 
-const services = [
-  {
-    icon: 'Home',
-    title: 'Строительство с нуля',
-    desc: 'Полный цикл строительства домов — от фундамента до отделки. Работа «под ключ» с фиксированной сметой.',
-    items: ['Полный цикл строительства домов', 'Фундамент, коробка, крыша, отделка', 'Работа «под ключ»'],
-  },
-  {
-    icon: 'Layers',
-    title: 'Фундаментные работы',
-    desc: 'Геологическое исследование, монолитный, ленточный и свайный фундамент с гарантией.',
-    items: ['Геологическое исследование грунта', 'Ленточный, свайный или плитный фундамент', 'Современное армирование'],
-  },
-  {
-    icon: 'Home',
-    title: 'Кровельные работы',
-    desc: 'Монтаж кровли любой сложности: металлочерепица, мягкая кровля, натуральная черепица.',
-    items: ['Двускатные, вальмовые, мансардные крыши', 'Металлочерепица, мягкая кровля, черепица', 'Полная герметичность и долговечность'],
-  },
-  {
-    icon: 'Building2',
-    title: 'Фасадные работы',
-    desc: 'Утепление и отделка фасадов. Штукатурка, покраска, реставрация.',
-    items: ['Утепление фасадов', 'Штукатурка и покраска', 'Ремонт и реставрация фасадов'],
-  },
-  {
-    icon: 'Wrench',
-    title: 'Ремонт и восстановление домов',
-    desc: 'Капитальный ремонт, замена конструкций, восстановление жилого состояния старых зданий.',
-    items: ['Капитальный ремонт', 'Замена конструкций и коммуникаций', 'Восстановление жилого состояния зданий'],
-  },
-  {
-    icon: 'Shield',
-    title: 'Заборы и ограждения',
-    desc: 'Установка заборов из металла, дерева и бетона. Ремонт и усиление существующих ограждений.',
-    items: ['Металлические, деревянные, бетонные заборы', 'Ремонт и усиление ограждений', 'Фундамент под забор'],
-  },
-  {
-    icon: 'Grid3x3',
-    title: 'Уличные плиточные работы',
-    desc: 'Укладка тротуарной плитки, мощение дорожек и дворов с подготовкой основания.',
-    items: ['Укладка тротуарной плитки', 'Мощение дорожек, дворов и площадок', 'Подготовка основания и дренаж'],
-  },
-  {
-    icon: 'Flame',
-    title: 'Строительство бань',
-    desc: 'Проектирование и строительство бань под ключ. Деревянные и каркасные бани.',
-    items: ['Проектирование и строительство под ключ', 'Деревянные и каркасные бани', 'Парная, моечная, комната отдыха'],
-  },
-  {
-    icon: 'TreePine',
-    title: 'Беседки и террасы',
-    desc: 'Строительство беседок и террас разных типов. Открытые и закрытые, индивидуальные проекты.',
-    items: ['Беседки различных типов', 'Открытые и закрытые террасы', 'Индивидуальные проекты'],
-  },
-];
+
 
 const advantages = [
   { icon: 'Shield', title: 'Гарантия 10 лет', desc: 'Даём письменную гарантию на все конструктивные работы' },
@@ -139,11 +85,11 @@ function ServiceCard({
   delay,
   onOrder,
 }: {
-  service: typeof services[0];
+  service: typeof servicesData[0];
   delay: number;
   onOrder: () => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <FadeIn delay={delay} className="h-full">
       <motion.div
@@ -157,36 +103,14 @@ function ServiceCard({
         </div>
         <h3 className="text-lg font-semibold mb-2" style={{ color: 'hsl(30,15%,18%)' }}>{service.title}</h3>
         <p className="text-sm leading-relaxed mb-4" style={{ color: 'hsl(30,10%,45%)' }}>{service.desc}</p>
-
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.ul
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-4 space-y-1.5 overflow-hidden"
-            >
-              {service.items.map(item => (
-                <li key={item} className="flex items-start gap-2 text-sm" style={{ color: 'hsl(30,10%,38%)' }}>
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: 'hsl(82,28%,45%)' }} />
-                  {item}
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-
         <div className="mt-auto flex items-center gap-3">
           <button
             className="text-sm font-medium flex items-center gap-1.5"
             style={{ color: 'hsl(82,28%,38%)' }}
-            onClick={() => setOpen(v => !v)}
+            onClick={() => navigate(`/services/${service.slug}`)}
           >
-            {open ? 'Скрыть' : 'Подробнее'}
-            <motion.span animate={{ rotate: open ? 90 : 0 }} transition={{ duration: 0.22 }}>
-              <Icon name="ChevronRight" size={14} />
-            </motion.span>
+            Подробнее
+            <Icon name="ChevronRight" size={14} />
           </button>
           <button
             className="ml-auto text-sm font-semibold px-3 py-1.5 rounded-lg"
@@ -410,8 +334,8 @@ export default function Index() {
             </h2>
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((s, i) => (
-              <ServiceCard key={s.title} service={s} delay={i * 0.07} onOrder={() => scrollTo('contact')} />
+            {servicesData.map((s, i) => (
+              <ServiceCard key={s.slug} service={s} delay={i * 0.07} onOrder={() => scrollTo('contact')} />
             ))}
           </div>
         </div>
