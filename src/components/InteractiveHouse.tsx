@@ -43,14 +43,6 @@ const HOUSE_SERVICES: ServiceItem[] = [
     title:'Внутренняя отделка',
     description:'Полный цикл: штукатурка, стяжка, плитка, обои, покраска. По вашему дизайн-проекту или создадим с нуля.',
     photo: IMG.interior },
-  { id:'plumbing',   label:'Сантехника', icon:'Droplets',   color:'#3A7ABF',
-    title:'Сантехнические работы',
-    description:'Проектирование и монтаж водоснабжения и канализации. Тёплые полы, системы фильтрации.',
-    photo: IMG.interior },
-  { id:'electrical', label:'Электрика',  icon:'Zap',        color:'#C08010',
-    title:'Электромонтажные работы',
-    description:'Электросети, проводка, электрощиты. Умный дом, охранная сигнализация, видеонаблюдение — всё под ключ.',
-    photo: IMG.interior },
   { id:'foundation', label:'Фундамент',  icon:'Layers',     color:'#7A6545',
     title:'Фундаментные работы',
     description:'Геологическое исследование грунта, ленточный, свайный или плитный фундамент. Современное армирование.',
@@ -444,8 +436,6 @@ const HOUSE_BTN_POS: Record<string, { x: number; y: number }> = {
   facade:     { x: 72,  y: 43 },
   walls:      { x: 72,  y: 57 },
   interior:   { x: 28,  y: 57 },
-  plumbing:   { x: 28,  y: 70 },
-  electrical: { x: 72,  y: 70 },
   foundation: { x: 50,  y: 84 },
 };
 
