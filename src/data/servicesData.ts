@@ -223,7 +223,20 @@ export const servicesData: ServiceData[] = [
     desc: 'Проектирование и строительство бань под ключ. Деревянные и каркасные бани.',
     fullDesc: 'Строим бани под ключ из бруса, бревна и по каркасной технологии. Помогаем с проектом, подбираем материалы и строим с нуля: фундамент, стены, кровля, отделка, печь. Парная, моечная и комната отдыха.',
     items: ['Проектирование и строительство под ключ', 'Деревянные и каркасные бани', 'Парная, моечная, комната отдыха', 'Установка печи и вентиляции'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/f2e3e897-c491-4730-b6b5-6aa4eba2600c.jpg',
+        caption: 'Деревянная баня из бруса — готовый фасад',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/4fe2b3e6-d9df-4143-9d90-9f9f46dbb2c4.jpg',
+        caption: 'Компактная баня-бочка под ключ',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/bc43bb59-fb3d-4269-9bfa-6e1ec65403f4.jpg',
+        caption: 'Парная с печью и полками внутри',
+      },
+    ],
   },
   {
     slug: 'besedki-terrasy',
