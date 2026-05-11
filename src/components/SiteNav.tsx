@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import { useRequestModal } from '@/context/RequestModalContext';
 
 export const navLinks = [
   { label: 'О нас',      href: '/about' },
@@ -13,6 +14,7 @@ export const navLinks = [
 export default function SiteNav() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { openModal } = useRequestModal();
 
   return (
     <motion.nav
@@ -47,7 +49,7 @@ export default function SiteNav() {
         <motion.button
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => navigate('/contact')}
+          onClick={() => openModal()}
           className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white hidden md:block"
           style={{ background: 'hsl(82,28%,35%)' }}
         >

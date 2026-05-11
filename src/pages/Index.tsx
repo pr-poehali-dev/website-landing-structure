@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import InteractiveHouse from '@/components/InteractiveHouse';
 import { servicesData } from '@/data/servicesData';
+import { useRequestModal } from '@/context/RequestModalContext';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/files/117df234-1330-4fb8-85ab-dc40c41a875f.jpg';
 const PORTFOLIO_IMG1 = 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/files/117df234-1330-4fb8-85ab-dc40c41a875f.jpg';
@@ -127,6 +128,7 @@ function ServiceCard({
 
 export default function Index() {
   const navigate = useNavigate();
+  const { openModal } = useRequestModal();
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -208,7 +210,7 @@ export default function Index() {
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => scrollTo('contact')}
+                onClick={() => openModal()}
                 className="px-8 py-4 rounded-2xl font-semibold text-lg text-white"
                 style={{ background: 'hsl(82,28%,35%)' }}
               >
@@ -335,7 +337,7 @@ export default function Index() {
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {servicesData.map((s, i) => (
-              <ServiceCard key={s.slug} service={s} delay={i * 0.07} onOrder={() => scrollTo('contact')} />
+              <ServiceCard key={s.slug} service={s} delay={i * 0.07} onOrder={() => openModal(s.title)} />
             ))}
           </div>
         </div>

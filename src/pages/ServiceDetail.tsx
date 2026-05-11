@@ -4,6 +4,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Icon from '@/components/ui/icon';
 import SiteNav from '@/components/SiteNav';
 import { servicesData } from '@/data/servicesData';
+import { useRequestModal } from '@/context/RequestModalContext';
 
 function FadeIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -19,6 +20,7 @@ function FadeIn({ children, delay = 0, className = '' }: { children: React.React
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const { openModal } = useRequestModal();
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
 
   const service = servicesData.find(s => s.slug === slug);
@@ -112,7 +114,7 @@ export default function ServiceDetail() {
               <p className="text-lg font-medium text-white mb-1">Нужна {service.title.toLowerCase()}?</p>
               <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>Оставьте заявку — рассчитаем стоимость бесплатно</p>
             </div>
-            <button onClick={() => navigate('/contact')}
+            <button onClick={() => openModal(service.title)}
               className="flex-shrink-0 px-6 py-3 rounded-xl text-sm font-semibold"
               style={{ background: 'hsl(82,28%,45%)', color: 'white' }}>
               Получить расчёт

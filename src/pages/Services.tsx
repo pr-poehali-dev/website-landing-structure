@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import SiteNav from '@/components/SiteNav';
 import { servicesData, type ServiceData } from '@/data/servicesData';
+import { useRequestModal } from '@/context/RequestModalContext';
 
 const roofingPhotos = [
   {
@@ -133,6 +134,7 @@ function ServiceCard({ s, i, onOrder }: { s: ServiceData; i: number; onOrder: ()
 
 export default function Services() {
   const navigate = useNavigate();
+  const { openModal } = useRequestModal();
   return (
     <div className="min-h-screen" style={{ background: 'hsl(38,25%,94%)', fontFamily: 'Golos Text, sans-serif' }}>
       <SiteNav />
@@ -151,7 +153,7 @@ export default function Services() {
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {servicesData.map((s, i) => (
-            <ServiceCard key={s.slug} s={s} i={i} onOrder={() => navigate('/contact')} />
+            <ServiceCard key={s.slug} s={s} i={i} onOrder={() => openModal(s.title)} />
           ))}
         </div>
 

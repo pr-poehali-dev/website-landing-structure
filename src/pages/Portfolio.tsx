@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import SiteNav from '@/components/SiteNav';
 import { servicesData } from '@/data/servicesData';
+import { useRequestModal } from '@/context/RequestModalContext';
 
 function FadeIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -24,6 +25,7 @@ const categories = ['Все', ...servicesData.filter(s => s.photos.length > 0).m
 
 export default function Portfolio() {
   const navigate = useNavigate();
+  const { openModal } = useRequestModal();
   const [activeCategory, setActiveCategory] = useState('Все');
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
 
@@ -94,7 +96,7 @@ export default function Portfolio() {
             Хотите такой же результат? Оставьте заявку — рассчитаем стоимость бесплатно.
           </p>
           <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-            onClick={() => navigate('/contact')}
+            onClick={() => openModal()}
             className="px-8 py-4 rounded-2xl font-semibold text-white"
             style={{ background: 'hsl(82,28%,35%)' }}>
             Рассчитать стоимость
