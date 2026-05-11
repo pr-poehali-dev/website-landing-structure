@@ -69,7 +69,28 @@ export const servicesData: ServiceData[] = [
     desc: 'Утепление и отделка фасадов. Штукатурка, покраска, реставрация.',
     fullDesc: 'Выполняем полный комплекс фасадных работ: утепление минватой и пенополистиролом, нанесение штукатурки, покраску и декоративную отделку. Работаем с новыми домами и проводим реставрацию старых фасадов.',
     items: ['Утепление фасадов', 'Штукатурка и покраска', 'Ремонт и реставрация фасадов', 'Декоративная отделка'],
-    photos: [],
+    photos: [
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/465b6648-a074-46d2-b766-c4ee884c59d6.jpg',
+        caption: 'Монтаж обрешётки и утепления фасада',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/2f27a975-7088-4027-a4a8-2bf6ababb981.jpg',
+        caption: 'Укладка сайдинга с ветро-влагозащитной плёнкой',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/2d752bc5-e93d-4fac-afbd-0d91c1163cbe.jpg',
+        caption: 'Декоративные фасадные панели под кирпич',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/6307e483-b817-41b3-8a94-235ac55c470c.jpg',
+        caption: 'Декоративная штукатурка «шуба»',
+      },
+      {
+        url: 'https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/48765fce-c84e-4550-bc14-4c94711be4e6.jpg',
+        caption: 'Утепление фасада минватой под штукатурку',
+      },
+    ],
   },
   {
     slug: 'remont-domov',
