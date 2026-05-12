@@ -50,6 +50,18 @@ export default function SiteNav() {
           })}
         </div>
         <div className="hidden md:flex items-center gap-3">
+          {location.pathname !== '/' && (
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => navigate('/')}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium"
+              style={{ background: 'hsl(38,20%,88%)', color: 'hsl(30,15%,30%)' }}
+            >
+              <Icon name="ArrowLeft" size={14} />
+              На главную
+            </motion.button>
+          )}
           <a href="tel:+79051785769"
             className="flex items-center gap-1.5 text-sm font-semibold"
             style={{ color: 'hsl(82,28%,35%)' }}>
