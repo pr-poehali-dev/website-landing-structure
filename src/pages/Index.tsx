@@ -209,9 +209,9 @@ export default function Index() {
               className="text-5xl md:text-7xl font-light mb-4 leading-tight"
               style={{ color: '#FDFAF2', fontFamily: 'Cormorant Garamond, serif', fontWeight: 300 }}
             >
-              Строительство домов
+              Строительные работы
               <br />
-              <em style={{ fontStyle: 'italic', color: 'hsl(42,60%,72%)' }}>под ключ</em>
+              <em style={{ fontStyle: 'italic', color: 'hsl(42,60%,72%)' }}>в Москве и области</em>
             </h1>
             <p className="text-xl md:text-2xl mb-10 font-light max-w-xl" style={{ color: 'rgba(255,255,255,0.8)' }}>
               От фундамента до отделки — с гарантией 10 лет и фиксированной сметой
