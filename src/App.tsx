@@ -11,6 +11,7 @@ import Reviews from "./pages/Reviews";
 import Contact from "./pages/Contact";
 import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
+import Geography from "./pages/Geography";
 import { RequestModalProvider } from "./context/RequestModalContext";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/geography" element={<Geography />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </RequestModalProvider>

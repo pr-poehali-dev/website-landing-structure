@@ -4,11 +4,12 @@ import Icon from '@/components/ui/icon';
 import { useRequestModal } from '@/context/RequestModalContext';
 
 export const navLinks = [
-  { label: 'О нас',      href: '/about' },
-  { label: 'Услуги',     href: '/services' },
-  { label: 'Портфолио',  href: '/portfolio' },
-  { label: 'Отзывы',     href: '/reviews' },
-  { label: 'Контакты',   href: '/contact' },
+  { label: 'О нас',           href: '/about' },
+  { label: 'Услуги',          href: '/services' },
+  { label: 'Портфолио',       href: '/portfolio' },
+  { label: 'Отзывы',          href: '/reviews' },
+  { label: 'Где мы работаем', href: '/geography' },
+  { label: 'Контакты',        href: '/contact' },
 ];
 
 export default function SiteNav() {
