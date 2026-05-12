@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '@/components/ui/icon';
 import { servicesData } from '@/data/servicesData';
 
+const SEND_URL = 'https://functions.poehali.dev/c942bbb7-d414-4e28-815f-eaa7cdc19c21';
+
 const serviceOptions = [
   ...servicesData.map(s => s.title),
   'Другое',
@@ -31,7 +33,15 @@ export default function RequestModal({ open, onClose, defaultService }: RequestM
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise(r => setTimeout(r, 800));
+    try {
+      await fetch(SEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, service, comment }),
+      });
+    } catch (_) {
+      console.error('Ошибка отправки заявки');
+    }
     setLoading(false);
     setSent(true);
   };
@@ -148,10 +158,10 @@ export default function RequestModal({ open, onClose, defaultService }: RequestM
                   </div>
                   <h3 className="text-2xl font-light mb-3"
                     style={{ fontFamily: 'Cormorant Garamond, serif', color: 'hsl(30,15%,15%)' }}>
-                    Заявка принята!
+                    Спасибо!
                   </h3>
                   <p className="text-sm leading-relaxed mb-6" style={{ color: 'hsl(30,10%,50%)' }}>
-                    Мы свяжемся с вами в ближайшее время
+                    Заявка принята. Мы свяжемся с вами в ближайшее время
                   </p>
                   <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
                     onClick={handleClose}
