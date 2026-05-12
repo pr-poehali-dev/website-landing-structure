@@ -514,15 +514,18 @@ export default function Index() {
       {/* FOOTER */}
       <footer className="px-6 py-10" style={{ background: 'hsl(30,15%,15%)', color: 'rgba(255,255,255,0.5)' }}>
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'hsl(82,28%,35%)' }}>
-              <Icon name="Home" size={14} className="text-white" />
-            </div>
-            <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}>СтройДом</span>
-          </div>
-          <p className="text-sm">© 2024 СтройДом. Строительство домов под ключ.</p>
+          <img
+            src="https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/43608f94-6244-46cd-9e58-325d08cdb686.jpg"
+            alt="Логотип" className="h-8 w-auto object-contain opacity-80"
+            style={{ filter: 'brightness(0) invert(1)' }}
+          />
+          <p className="text-sm">© 2024 Строительные работы в Москве и области</p>
           <div className="flex gap-6">
-            {navLinks.slice(0, 3).map((l) => (
+            {[
+              { label: 'Услуги', href: '/services' },
+              { label: 'Портфолио', href: '/portfolio' },
+              { label: 'Контакты', href: '/contact' },
+            ].map((l) => (
               <Link key={l.href} to={l.href} className="text-sm hover:text-white transition-colors">
                 {l.label}
               </Link>
