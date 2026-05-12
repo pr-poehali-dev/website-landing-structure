@@ -31,6 +31,7 @@ export default function SiteNav() {
             src="https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/43608f94-6244-46cd-9e58-325d08cdb686.jpg"
             alt="Логотип"
             className="h-10 w-auto object-contain"
+            style={{ mixBlendMode: 'multiply' }}
           />
         </Link>
         <div className="hidden md:flex items-center gap-8">
