@@ -26,11 +26,12 @@ export default function SiteNav() {
       style={{ background: 'rgba(250,247,240,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid hsl(38,20%,88%)' }}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'hsl(82,28%,35%)' }}>
-            <Icon name="Home" size={16} className="text-white" />
-          </div>
-          <span className="text-lg font-bold" style={{ color: 'hsl(82,28%,28%)' }}>СтройДом</span>
+        <Link to="/">
+          <img
+            src="https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/43608f94-6244-46cd-9e58-325d08cdb686.jpg"
+            alt="Логотип"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => {
