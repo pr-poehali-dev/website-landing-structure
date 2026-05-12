@@ -91,35 +91,45 @@ function ServiceCard({
   onOrder: () => void;
 }) {
   const navigate = useNavigate();
+  const cover = service.photos[0]?.url;
   return (
     <FadeIn delay={delay} className="h-full">
       <motion.div
         whileHover={{ y: -4 }}
-        className="p-6 rounded-2xl flex flex-col h-full"
+        className="rounded-2xl flex flex-col h-full overflow-hidden"
         style={{ background: 'hsl(40,30%,97%)', border: '1px solid hsl(38,20%,85%)' }}
       >
-        <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 flex-shrink-0"
-          style={{ background: 'hsl(82,22%,90%)' }}>
-          <Icon name={service.icon} size={22} style={{ color: 'hsl(82,28%,35%)' }} />
+        <div className="relative h-44 overflow-hidden flex-shrink-0">
+          {cover
+            ? <img src={cover} alt={service.title} className="w-full h-full object-cover" />
+            : <div className="w-full h-full flex items-center justify-center" style={{ background: 'hsl(82,22%,90%)' }}>
+                <Icon name={service.icon} size={36} style={{ color: 'hsl(82,28%,40%)' }} />
+              </div>
+          }
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%)' }} />
+          <div className="absolute bottom-3 left-4">
+            <h3 className="text-base font-semibold text-white leading-tight">{service.title}</h3>
+          </div>
         </div>
-        <h3 className="text-lg font-semibold mb-2" style={{ color: 'hsl(30,15%,18%)' }}>{service.title}</h3>
-        <p className="text-sm leading-relaxed mb-4" style={{ color: 'hsl(30,10%,45%)' }}>{service.desc}</p>
-        <div className="mt-auto flex items-center gap-3">
-          <button
-            className="text-sm font-medium flex items-center gap-1.5"
-            style={{ color: 'hsl(82,28%,38%)' }}
-            onClick={() => navigate(`/services/${service.slug}`)}
-          >
-            Подробнее
-            <Icon name="ChevronRight" size={14} />
-          </button>
-          <button
-            className="ml-auto text-sm font-semibold px-3 py-1.5 rounded-lg"
-            style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }}
-            onClick={onOrder}
-          >
-            Заказать
-          </button>
+        <div className="p-5 flex flex-col flex-1">
+          <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: 'hsl(30,10%,45%)' }}>{service.desc}</p>
+          <div className="flex items-center gap-3">
+            <button
+              className="text-sm font-medium flex items-center gap-1.5"
+              style={{ color: 'hsl(82,28%,38%)' }}
+              onClick={() => navigate(`/services/${service.slug}`)}
+            >
+              Подробнее
+              <Icon name="ChevronRight" size={14} />
+            </button>
+            <button
+              className="ml-auto text-sm font-semibold px-3 py-1.5 rounded-lg"
+              style={{ background: 'hsl(82,22%,90%)', color: 'hsl(82,28%,30%)' }}
+              onClick={onOrder}
+            >
+              Заказать
+            </button>
+          </div>
         </div>
       </motion.div>
     </FadeIn>
