@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import InteractiveHouse from '@/components/InteractiveHouse';
+import SiteNav from '@/components/SiteNav';
 import { servicesData } from '@/data/servicesData';
 import { useRequestModal } from '@/context/RequestModalContext';
 
@@ -26,16 +27,6 @@ function FadeIn({ children, delay = 0, className = '' }: { children: React.React
     </motion.div>
   );
 }
-
-const navLinks = [
-  { label: 'О нас',     href: '/about' },
-  { label: 'Услуги',    href: '/services' },
-  { label: 'Портфолио', href: '/portfolio' },
-  { label: 'Отзывы',    href: '/reviews' },
-  { label: 'Контакты',  href: '/contact' },
-];
-
-
 
 const advantages = [
   { icon: 'Shield', title: 'Гарантия 10 лет', desc: 'Даём письменную гарантию на все конструктивные работы' },
@@ -146,48 +137,7 @@ export default function Index() {
   return (
     <div className="min-h-screen" style={{ background: 'hsl(40,30%,97%)', fontFamily: 'Golos Text, sans-serif' }}>
 
-      {/* NAV */}
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
-        style={{ background: 'rgba(250,247,240,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid hsl(38,20%,88%)' }}
-      >
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link to="/">
-            <img
-              src="https://cdn.poehali.dev/projects/da8bc0c0-1c84-4c7d-8cc7-f69388f0cde6/bucket/43608f94-6244-46cd-9e58-325d08cdb686.jpg"
-              alt="Логотип"
-              className="h-10 w-auto object-contain"
-              style={{ mixBlendMode: 'multiply' }}
-            />
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="text-sm font-medium transition-colors"
-                style={{ color: 'hsl(30,15%,35%)' }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'hsl(82,28%,35%)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'hsl(30,15%,35%)')}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => navigate('/contact')}
-            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white hidden md:block"
-            style={{ background: 'hsl(82,28%,35%)' }}
-          >
-            Рассчитать стоимость
-          </motion.button>
-        </div>
-      </motion.nav>
+      <SiteNav />
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
